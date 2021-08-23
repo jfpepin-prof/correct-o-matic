@@ -1,0 +1,35 @@
+﻿@page
+@model LeCorrecteur.Pages.Grilles.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="h2">Mes grilles</h1>
+
+<p>
+    <a class="btn btn-secondary" asp-page="Create">Créer une grille</a>
+</p>
+<div class="row">
+
+    @foreach (var item in Model.Grille) {
+        <div class="col-md-6 col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="h4">@item.Titre</h2>
+                    <h3 class="h6">@item.Cours</h3>
+                    <p>
+                        Création :
+                        <span class="badge badge-secondary">@item.DateCreation</span>
+                    </p>
+                    
+                    <div>
+                        <a class="btn btn-primary mt-3" asp-page="./Details" asp-route-id="@item.ID">Voir la grille</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>

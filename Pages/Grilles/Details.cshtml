@@ -1,0 +1,54 @@
+﻿@page "{id:int}"
+@model LeCorrecteur.Pages.Grilles.DetailsModel
+
+@{
+    ViewData["Title"] = @Model.Grille.Titre;
+}
+
+
+<div id="entete-page">
+    <h1 class="h2">@Model.Grille.Titre</h1>
+    <span class="h5">@Model.Grille.Cours</span>
+    <div>
+        <a asp-page="./Edit" asp-route-id="@Model.Grille.ID">Modifier</a> |
+        <a asp-page="./Delete" asp-route-id="@Model.Grille.ID">Supprimer</a>
+    </div>
+</div>
+
+<section class="border-top mt-4 pt-4">
+    <table class="table table-bordered bg-white">
+        <thead class="bg-dark text-white">
+            <tr class="h5">
+                <th>Compétences</th>
+                <th>Pondération</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var competence in Model.Grille.Competences)
+            {
+                <tr>
+                    <td>
+                        <h2 class="h4">@competence.Nom</h2>
+                        <p>@competence.Description</p>
+                    </td>
+                    <td class="text-center align-baseline h3 align-middle">
+                       @competence.Ponderation
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot class="bg-secondary text-white">
+            <tr>
+                <td class="h2 text-right">
+                    Total
+                </td>
+                <td class="h2 text-center">
+                    @Model.Grille.TotalPoints
+                </td>
+            </tr>
+        </tfoot>
+
+    </table>
+    <a class="btn btn-primary" asp-page="Competences/Create" asp-route-id="@Model.Grille.ID">Ajouter une compétence</a>
+</section>
+

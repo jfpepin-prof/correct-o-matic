@@ -1,0 +1,40 @@
+﻿@page "{id:int}" 
+@model LeCorrecteur.Pages.Grilles.EditModel
+
+@{
+    ViewData["Title"] = "Modifier";
+}
+
+
+<h1>Modifier la grille</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Grille.ID" />
+            <div class="form-group">
+                <label asp-for="Grille.Titre" class="control-label"></label>
+                <input asp-for="Grille.Titre" class="form-control" />
+                <span asp-validation-for="Grille.Titre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grille.Cours" class="control-label"></label>
+                <input asp-for="Grille.Cours" class="form-control" />
+                <span asp-validation-for="Grille.Cours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sauvegarder" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Grilles/Details" asp-route-id="@Model.Grille.ID">Annuler</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
